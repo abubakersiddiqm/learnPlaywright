@@ -27,7 +27,7 @@ public class MyFirstPlayWrightScrpit {
         if (pageTitle.contains("View Lead")) {
             page.locator("text='Delete'").click();
             page.locator("//a[contains(text(),'Find Leads')]").click();
-            page.locator("//input[@name='id']").type(textFromTable);
+            page.locator("[name='id']").type(textFromTable);
             page.locator("(//table[@class='x-btn-wrap x-btn '])[2]//td//button").click();
             String resultSearch = page.locator("//div[contains(text(),'No records to display')]").innerText();
             System.out.println(resultSearch);
@@ -35,6 +35,8 @@ public class MyFirstPlayWrightScrpit {
         //page close
         //page.close();
         //browser close
-        brw.close();
+        //brw.close();
+        //playwright object at end close it to stop background process -recommanded
+        pw.close();
     }
 }
