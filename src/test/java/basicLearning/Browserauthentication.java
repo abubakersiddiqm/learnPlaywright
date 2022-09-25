@@ -1,9 +1,6 @@
 package basicLearning;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.*;
 
 import java.awt.*;
 
@@ -16,9 +13,13 @@ public class Browserauthentication {
 
         Playwright pw = Playwright.create();
         Browser brw = pw.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
-        Page page = brw.newPage();
+        //context
+        BrowserContext browserContext = brw.newContext(new Browser.NewContextOptions().setHttpCredentials("admin","admin"));
+        Page page = browserContext.newPage();
         page.setViewportSize(width,height);
-        page.navigate("http://leaftaps.com/opentaps");
+        page.navigate("https://the-internet.herokuapp.com/basic_auth");
+        String ConfirmAuth = page.locator("div.example>h3").innerText();
+        System.out.println(ConfirmAuth);
 
         //playwright object at end close it to stop background process -recommanded
         pw.close();
