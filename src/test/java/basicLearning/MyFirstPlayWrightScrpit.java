@@ -1,15 +1,13 @@
 package basicLearning;
 
-import com.microsoft.playwright.Browser;
-import com.microsoft.playwright.BrowserType;
-import com.microsoft.playwright.Page;
-import com.microsoft.playwright.Playwright;
+import com.microsoft.playwright.*;
 
 public class MyFirstPlayWrightScrpit {
     public static void main(String[] args) {
         Playwright pw = Playwright.create();
         Browser brw = pw.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
-        Page page = brw.newPage();
+        BrowserContext bwContext = brw.newContext();
+        Page page = bwContext.newPage();
         page.navigate("http://leaftaps.com/opentaps");
         page.locator("#username").type("demosalesmanager");
         page.locator("#password").type("crmsfa");
@@ -20,7 +18,7 @@ public class MyFirstPlayWrightScrpit {
         page.locator("(//input[@name='firstName'])[3]").type("babu");
         page.locator("//button[contains(text(),'Find Leads')]").click();
         String textFromTable = page.locator("(//table[@class='x-grid3-row-table']//tr//td)[1]/div/a").innerText();
-        System.out.println("table value "+textFromTable);
+        System.out.println("table value " + textFromTable);
         page.locator("(//table[@class='x-grid3-row-table']//tr//td)[1]/div/a").click();
         String pageTitle = page.title();
         System.out.println(pageTitle);
