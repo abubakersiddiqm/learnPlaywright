@@ -1,4 +1,4 @@
-package basicLearning;
+package dropdownAndAuth;
 
 import com.microsoft.playwright.*;
 
