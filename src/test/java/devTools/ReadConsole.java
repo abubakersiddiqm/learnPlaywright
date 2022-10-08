@@ -8,7 +8,7 @@ public class ReadConsole {
         Browser brw = pw.chromium().launch(new BrowserType.LaunchOptions().setChannel("chrome").setHeadless(false));
         BrowserContext bwContext = brw.newContext();
         Page page = bwContext.newPage();
-        //read console ,need to add listener on
+        //read console ,need to add listener onConsoleMessage()
         page.onConsoleMessage(handler->{
             System.out.println(handler.type());
             System.out.println(page.title());
